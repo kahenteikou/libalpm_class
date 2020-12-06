@@ -1,0 +1,1 @@
+#include "libalpm_class.hpp"
