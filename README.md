@@ -1,0 +1,1 @@
+# libalpm_class
