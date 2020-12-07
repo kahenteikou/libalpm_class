@@ -7,14 +7,19 @@ alpm_class::alpm_class(String root,String dbpath){
 alpm_class::~alpm_class(){
     alpm_release(handle);
 }
-alpm_db_t* alpm_class::register_syncdb(String treename,int level){
-    return alpm_register_syncdb(handle,treename.c_str(),level);
+alpm_db_class alpm_class::register_syncdb(String treename,int level){
+    return alpm_db_class(alpm_register_syncdb(handle,treename.c_str(),level));
 }
-alpm_db_t* alpm_class::get_localdb(){
-    return alpm_get_localdb(handle);
+alpm_db_class alpm_class::get_localdb(){
+    return alpm_db_class(alpm_get_localdb(handle));
 }
-Vector<alpm_db_t*> alpm_class::get_syncdbs(){
-    return to_array_pointer<alpm_db_t*>(alpm_get_syncdbs(handle));
+Vector<alpm_db_class> alpm_class::get_syncdbs(){
+    Vector<alpm_db_t*> ls_arraykun= to_array_pointer<alpm_db_t*>(alpm_get_syncdbs(handle));
+    Vector<alpm_db_class> return_array;
+    for(alpm_db_t* ptrkun : ls_arraykun){
+        return_array.push_back(alpm_db_class(ptrkun));
+    }
+    return return_array;
 }
 
 template<class T> 

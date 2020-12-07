@@ -8,7 +8,7 @@ target_include_directories(alpm_class_test PRIVATE include/)
 target_link_libraries(alpm_class_test alpm_class)
 
 set_target_properties(alpm_class PROPERTIES
-        PUBLIC_HEADER "include/libalpm_class.hpp"
+        PUBLIC_HEADER "include/libalpm_class.hpp;include/alpm_db_class.hpp;include/alpm_pkg_class.hpp"
 )
 install(TARGETS alpm_class
     EXPORT alpm_class-export

@@ -2,15 +2,17 @@
 #include <alpm.h>
 #include <string>
 #include <vector>
+#include "alpm_db_class.hpp"
 typedef std::string String;
-#define Vector  std::vector
+template<typename T>
+using Vector=std::vector<T>;
 class alpm_class{
     public:
         alpm_class(String root,String dbpath);
         ~alpm_class();
-        alpm_db_t* register_syncdb(String treename,int level);
-        alpm_db_t* get_localdb();
-        Vector<alpm_db_t*> get_syncdbs();
+        alpm_db_class register_syncdb(String treename,int level);
+        alpm_db_class get_localdb();
+        Vector<alpm_db_class> get_syncdbs();
     private:
         alpm_handle_t* handle;
         template<class T> 
