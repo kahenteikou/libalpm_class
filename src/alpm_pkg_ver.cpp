@@ -11,6 +11,24 @@ bool alpm_pkg_ver::operator !=(const alpm_pkg_ver &r) const{
 bool alpm_pkg_ver::operator <(const alpm_pkg_ver &r) const{
     const char* a=pkgver_str.c_str();
     const char* b=r.pkgver_str.c_str();
-    char* pkg_result=(char*)alpm_pkg_vercmp(a,b);
-    return (pkg_result == b);
+    int ver_diff= alpm_pkg_vercmp(a,b);
+    return (ver_diff < 0);
+}
+bool alpm_pkg_ver::operator >(const alpm_pkg_ver &r) const{
+    const char* a=pkgver_str.c_str();
+    const char* b=r.pkgver_str.c_str();
+    int ver_diff= alpm_pkg_vercmp(a,b);
+    return (ver_diff > 0);
+}
+bool alpm_pkg_ver::operator >=(const alpm_pkg_ver &r) const{
+    const char* a=pkgver_str.c_str();
+    const char* b=r.pkgver_str.c_str();
+    int ver_diff= alpm_pkg_vercmp(a,b);
+    return (ver_diff >= 0);
+}
+bool alpm_pkg_ver::operator <=(const alpm_pkg_ver &r) const{
+    const char* a=pkgver_str.c_str();
+    const char* b=r.pkgver_str.c_str();
+    int ver_diff= alpm_pkg_vercmp(a,b);
+    return (ver_diff <= 0);
 }
