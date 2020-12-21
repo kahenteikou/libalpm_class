@@ -32,3 +32,6 @@ bool alpm_pkg_ver::operator <=(const alpm_pkg_ver &r) const{
     int ver_diff= alpm_pkg_vercmp(a,b);
     return (ver_diff <= 0);
 }
+std::string alpm_pkg_ver::get_str(){
+    return pkgver_str;
+}

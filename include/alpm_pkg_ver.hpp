@@ -10,6 +10,7 @@ class alpm_pkg_ver{
         bool operator >(const alpm_pkg_ver &r) const;
         bool operator <=(const alpm_pkg_ver &r) const;
         bool operator >=(const alpm_pkg_ver &r) const;
+        std::string get_str();
     private:
         std::string pkgver_str;
 };

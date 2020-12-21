@@ -16,8 +16,14 @@ alpm_pkg_ver alpm_pkg_class::get_version(){
     return alpm_pkg_ver(alpm_pkg_get_version(pkgptr));
 }
 
-Vector<alpm_pkg_class> alpm_pkg_class::get_depends_packages(){
-
+Vector<alpm_depend_class> alpm_pkg_class::get_depends_packages(){
+    Vector<_alpm_depend_t*> pkg_array= to_array_pointer<_alpm_depend_t*>(alpm_pkg_get_depends(pkgptr));
+    Vector<alpm_depend_class> return_arrays;
+    for(_alpm_depend_t* pkgkun:pkg_array){
+        alpm_depend_class dep_c(pkgkun);
+        return_arrays.push_back(dep_c);
+    }
+    return return_arrays;
 }
 template<class T> 
 Vector<T> alpm_pkg_class::to_array_pointer(alpm_list_t* lskun){
