@@ -17,11 +17,12 @@ alpm_pkg_ver alpm_pkg_class::get_version(){
 }
 
 Vector<alpm_depend_class> alpm_pkg_class::get_depends_packages(){
-    Vector<_alpm_depend_t*> pkg_array= to_array_pointer<_alpm_depend_t*>(alpm_pkg_get_depends(pkgptr));
+    Vector<alpm_depend_t*> pkg_array= to_array_pointer<alpm_depend_t*>(alpm_pkg_get_depends(pkgptr));
     Vector<alpm_depend_class> return_arrays;
-    for(_alpm_depend_t* pkgkun:pkg_array){
-        alpm_depend_class dep_c(pkgkun);
-        return_arrays.push_back(dep_c);
+    for(alpm_depend_t* pkgkun2:pkg_array){
+        if(pkgkun2 != nullptr){
+            return_arrays.push_back(alpm_depend_class(*pkgkun2));
+        }
     }
     return return_arrays;
 }
